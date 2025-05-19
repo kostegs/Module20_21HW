@@ -247,7 +247,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!64 &83333406
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -969,6 +969,7 @@ GameObject:
   - component: {fileID: 1730942916}
   - component: {fileID: 1730942915}
   - component: {fileID: 1730942914}
+  - component: {fileID: 1730942917}
   m_Layer: 6
   m_Name: Ship
   m_TagString: Untagged
@@ -1034,6 +1035,21 @@ Transform:
   - {fileID: 1189075684730648444}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1730942917
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1730942913}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30866dddf7c3c16418a6952338f0b1dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _amplitude: 1
+  _frequency: 2
+  _angle: 15
 --- !u!1 &1825441930
 GameObject:
   m_ObjectHideFlags: 0
