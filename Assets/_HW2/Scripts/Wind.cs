@@ -1,9 +1,14 @@
+using System.Collections;
+using TMPro;
 using UnityEngine;
 
 public class Wind : MonoBehaviour
 {
+    private const float TimeToIndicateAboutChanging = 3f;
+
     [SerializeField] private float _timeToChange;
     [SerializeField] private float _changeSpeed;
+    [SerializeField] private TMP_Text _windIndicator;
 
     private float _time;
     private Quaternion _targetRotation;
@@ -18,7 +23,27 @@ public class Wind : MonoBehaviour
         {
             _time = 0;
             ChangeRotation();
+            StartIndicateWindChanging();
         }            
+    }   
+
+    private void StartIndicateWindChanging()
+    {
+        StartCoroutine(IndicateWindChanging());        
+    }
+
+    private IEnumerator IndicateWindChanging()
+    {
+        float elapsedTime = 0f;
+        _windIndicator.text = "Внимание: Ветер сменился";
+
+        while(elapsedTime <= TimeToIndicateAboutChanging)
+        {
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        _windIndicator.text = "";
     }
 
     private void ChangeRotation()
@@ -27,17 +52,12 @@ public class Wind : MonoBehaviour
 
         Vector3 newPosition = new Vector3(0, randomPosition, 0);
 
-        _targetRotation = Quaternion.Euler(newPosition);
-        
-
-        //Debug.Log($"New pos: {newPosition}, quat: {lookRotation.eulerAngles}");
+        _targetRotation = Quaternion.Euler(newPosition);            
     }
 
     private void DoRotation()
     {
         float step = _changeSpeed * Time.deltaTime;
-        transform.rotation = Quaternion.RotateTowards(transform.rotation, _targetRotation, step);
-        
-        //Debug.Log($"New pos: {newPosition}, quat: {lookRotation.eulerAngles}");
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, _targetRotation, step);        
     }
 }
