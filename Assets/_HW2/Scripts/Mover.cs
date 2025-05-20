@@ -22,6 +22,7 @@ public class Mover : MonoBehaviour
     private void FixedUpdate()
     {
         float windPower = Vector3.Dot(_sail.forward, _wind.transform.forward);
+        windPower = Mathf.Clamp(windPower, 0, windPower);
 
         if(_rigidbody.velocity.magnitude < _maxSpeed)
             _rigidbody.AddForce(transform.forward * windPower * _windCoefficiency, ForceMode.Acceleration);        
