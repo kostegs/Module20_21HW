@@ -1,31 +1,29 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Mover : MonoBehaviour
 {
-    private const float WIND_POWER_TRANSLATE_COEFFICIENCY = 1000;
+    private Vector3 _rayHeight = new Vector3(0, 10, 0);
+    private int _rayLengthCoefficiency = 100;
 
     [SerializeField] private Wind _wind;
     [SerializeField] private Rigidbody _rigidbody;
     [SerializeField] private float _windCoefficiency;
+    [SerializeField] private Transform _sail;
+    [SerializeField] private float _maxSpeed;
 
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.blue;
-        Gizmos.DrawRay(transform.position, _wind.transform.forward * 100);
+        Gizmos.DrawRay(transform.position + _rayHeight, _wind.transform.forward * _rayLengthCoefficiency);
         Gizmos.color = Color.red;
-        Gizmos.DrawRay(transform.position, transform.forward * 100);
+        Gizmos.DrawRay(transform.position + _rayHeight, transform.forward * _rayLengthCoefficiency);
     }    
 
     private void FixedUpdate()
     {
-        float windPower = Vector3.Dot(transform.forward, _wind.transform.forward);
+        float windPower = Vector3.Dot(_sail.forward, _wind.transform.forward);
 
-        Debug.Log(windPower);
-
-        _rigidbody.AddForce(transform.forward * windPower * _windCoefficiency, ForceMode.Acceleration);
-
-        //Debug.Log(_rigidbody.velocity);
+        if(_rigidbody.velocity.magnitude < _maxSpeed)
+            _rigidbody.AddForce(transform.forward * windPower * _windCoefficiency, ForceMode.Acceleration);        
     }
 }
