@@ -300,6 +300,8 @@ MonoBehaviour:
   _layerMask:
     serializedVersion: 2
     m_Bits: 256
+  _explosionEffectPrefab: {fileID: 4596544553357837919, guid: 8eb503696b886e04faff8fc0f480d473,
+    type: 3}
 --- !u!4 &99955618
 Transform:
   m_ObjectHideFlags: 0
