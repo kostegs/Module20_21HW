@@ -8,12 +8,12 @@ public class Example : MonoBehaviour
 
     private DragService _dragService;
     private ExplosionService _explosionService;
-    private IUserInputProcessor _dragAndDropInput;
-    private IUserInputProcessor _explosionInput;
+    private IInputProcessor _dragAndDropInput;
+    private IInputProcessor _explosionInput;
     private ParticleSystem _explosionEffect;
     private bool _isInitialized;
 
-    public void Initialize(IUserInputProcessor dragAndDropInput, IUserInputProcessor explosionInput) 
+    public void Initialize(IInputProcessor dragAndDropInput, IInputProcessor explosionInput) 
     {
         _dragAndDropInput = dragAndDropInput;
         _explosionInput = explosionInput;

@@ -7,11 +7,11 @@ public class DragService
     
     private float _heightAdjustmentCoefficiency;
     private IGrabble _catchedObject;
-    private IUserInputProcessor _userInput;
+    private IInputProcessor _input;
 
-    public DragService(IUserInputProcessor userInput)
+    public DragService(IInputProcessor input)
     {
-        _userInput = userInput;
+        _input = input;
     }
 
     public void TryCatchObject()
@@ -57,7 +57,7 @@ public class DragService
         _catchedObject = null;                    
     }
 
-    private Vector3 GetCurrentCursorPosition() => _userInput.GetCurrentCursorPosition();
+    private Vector3 GetCurrentCursorPosition() => _input.GetCurrentCursorPosition();
 
     private bool IsObjectCatched() => _catchedObject != null;
 }

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class MouseRightInput : IUserInputProcessor
+public class MouseRightInput : IInputProcessor
 {
     private const int RightMouseButton = 1;
 

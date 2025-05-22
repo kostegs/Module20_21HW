@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public interface IUserInputProcessor
+public interface IInputProcessor
 {
     bool IsButtonDown();
 
