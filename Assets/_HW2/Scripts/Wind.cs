@@ -27,23 +27,16 @@ public class Wind : MonoBehaviour
         }            
     }   
 
-    private void StartIndicateWindChanging()
-    {
-        StartCoroutine(IndicateWindChanging());        
-    }
+    private void StartIndicateWindChanging() 
+        => StartCoroutine(IndicateWindChanging());        
 
     private IEnumerator IndicateWindChanging()
     {
-        float elapsedTime = 0f;
-        _windIndicator.text = "Внимание: Ветер сменился";
+        _windIndicator.gameObject.SetActive(true);        
 
-        while(elapsedTime <= TimeToIndicateAboutChanging)
-        {
-            elapsedTime += Time.deltaTime;
-            yield return null;
-        }
+        yield return new WaitForSeconds(TimeToIndicateAboutChanging);
 
-        _windIndicator.text = "";
+        _windIndicator.gameObject.SetActive(false);
     }
 
     private void ChangeRotation()

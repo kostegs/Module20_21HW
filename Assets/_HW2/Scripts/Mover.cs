@@ -8,7 +8,7 @@ public class Mover : MonoBehaviour
     [SerializeField] private Wind _wind;
     [SerializeField] private Rigidbody _rigidbody;
     [SerializeField] private float _windCoefficiency;
-    [SerializeField] private Transform _sail;
+    [SerializeField] private Transform _sailTransform;    
     [SerializeField] private float _maxSpeed;
 
     private void OnDrawGizmos()
@@ -21,10 +21,14 @@ public class Mover : MonoBehaviour
 
     private void FixedUpdate()
     {
-        float windPower = Vector3.Dot(_sail.forward, _wind.transform.forward);
+        float scalarShipSale = Vector3.Dot(_sailTransform.forward, transform.forward);
+        float scalarSaleWind = Vector3.Dot(_sailTransform.forward, _wind.transform.forward);
+
+        float windPower = scalarShipSale * scalarSaleWind;
+
         windPower = Mathf.Clamp(windPower, 0, windPower);
 
-        if(_rigidbody.velocity.magnitude < _maxSpeed)
+        if (_rigidbody.velocity.magnitude < _maxSpeed)
             _rigidbody.AddForce(transform.forward * windPower * _windCoefficiency, ForceMode.Acceleration);        
     }
 }
