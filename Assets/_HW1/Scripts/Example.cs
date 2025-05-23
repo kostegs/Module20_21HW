@@ -18,10 +18,10 @@ public class Example : MonoBehaviour
         _dragAndDropInput = dragAndDropInput;
         _explosionInput = explosionInput;
 
-        _dragService = new DragService(_dragAndDropInput);
-        _explosionService = new ExplosionService(_explosionForce, _explosionRadius, _explosionInput);
-
         _explosionEffect = Instantiate(_explosionEffectPrefab, Vector3.zero, Quaternion.identity);
+
+        _dragService = new DragService(_dragAndDropInput);
+        _explosionService = new ExplosionService(_explosionForce, _explosionRadius, _explosionInput, _explosionEffect);        
 
         _isInitialized = true;
     }
@@ -40,9 +40,7 @@ public class Example : MonoBehaviour
 
         if (_explosionInput.IsButtonDown())
         {
-            Vector3 explosionCoordinates = _explosionService.MakeExplosion();
-            _explosionEffect.transform.position = explosionCoordinates;
-            _explosionEffect.Play(true);
+            _explosionService.MakeExplosion();            
         }
     }
 }

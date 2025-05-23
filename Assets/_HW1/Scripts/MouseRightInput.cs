@@ -1,14 +1,6 @@
-using UnityEngine;
-
-public class MouseRightInput : IInputProcessor
+public class MouseRightInput : MouseInput
 {
     private const int RightMouseButton = 1;
 
-    public Vector3 GetCurrentCursorPosition() => Input.mousePosition;
-
-    public bool IsButtonDown() => Input.GetMouseButtonDown(RightMouseButton);
-
-    public bool IsButtonHold() => Input.GetMouseButton(RightMouseButton);
-
-    public bool IsButtonUp() => Input.GetMouseButtonUp(RightMouseButton);
+    public MouseRightInput() => MouseKeyButton = RightMouseButton;
 }

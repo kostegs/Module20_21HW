@@ -8,16 +8,18 @@ public class ExplosionService
     private float _explosionForce;    
     private float _cameraZDistance;
     private IInputProcessor _input;
+    private ParticleSystem _explosionEffect;
 
-    public ExplosionService(float force, float radius, IInputProcessor input)
+    public ExplosionService(float force, float radius, IInputProcessor input, ParticleSystem explosionEffect)
     {
         _cameraZDistance = Camera.main.transform.position.z * CameraReverseDistanceCoefficiency;
         _explosionForce = force;
         _radius = radius;
         _input = input;
+        _explosionEffect = explosionEffect;
     }
 
-    public Vector3 MakeExplosion()
+    public void MakeExplosion()
     {
         Vector3 currentCursorPosition = _input.GetCurrentCursorPosition();
         Vector3 cursorPositionConverted = new Vector3(currentCursorPosition.x, currentCursorPosition.y, _cameraZDistance);
@@ -36,6 +38,7 @@ public class ExplosionService
             }            
         }
 
-        return explosionPoint;
+        _explosionEffect.transform.position = explosionPoint;
+        _explosionEffect.Play();        
     }
 }
